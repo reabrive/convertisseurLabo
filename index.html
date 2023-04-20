@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convertisseurs de bilirubinémie, créatinémie, urémie et lactatémie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .left, .right {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .left label, .right label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Convertisseurs de bilirubinémie, créatinémie, urémie et lactatémie</h1>
+
+    <div class="container">
+        <div class="left">
+            <label for="umol">Taux de bilirubine en µmol/l:</label>
+            <input type="number" id="umol" name="umol" placeholder="Entrez le taux en µmol/l" onkeyup="convert('bilirubin', 'umol')">
+        </div>
+
+        <div class="right">
+            <label for="mg">Taux de bilirubine en mg/l:</label>
+            <input type="number" id="mg" name="mg" placeholder="Entrez le taux en mg/l" onkeyup="convert('bilirubin', 'mg')">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <label for="creat_umol">Taux de créatinine en µmol/l:</label>
+            <input type="number" id="creat_umol" name="creat_umol" placeholder="Entrez le taux en µmol/l" onkeyup="convert('creatinine', 'umol')">
+        </div>
+
+        <div class="right">
+            <label for="creat_mg">Taux de créatinine en mg/l:</label>
+            <input type="number" id="creat_mg" name="creat_mg" placeholder="Entrez le taux en mg/l" onkeyup="convert('creatinine', 'mg')">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <label for="urea_mmol">Taux d'urémie en mmol/l:</label>
+            <input type="number" id="urea_mmol" name="urea_mmol" placeholder="Entrez le taux en mmol/l" onkeyup="convert('urea', 'mmol')">
+        </div>
+
+        <div class="right">
+            <label for="urea_g">Taux d'urémie en g/l:</label>
+            <input type="number" id="urea_g" name="urea_g" placeholder="Entrez le taux en g/l" onkeyup="convert('urea', 'g')">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <label for="lact_mmol">Taux de lactatémie en mmol/l:</label>
+            <input type="number" id="lact_mmol" name="lact_mmol" placeholder="Entrez le taux en mmol/l" onkeyup="convert('lactate', 'mmol')">
+        </div>
+
+        <div class="right">
+            <label for="lact_mg">Taux de lactatémie en mg/l:</label>
+            <input type="number" id="lact_mg" name="lact_mg" placeholder="Entrez le taux en mg/l" onkeyup="convert('lactate', 'mg')">
+        </div>
+    </div>
+
+
+<script>
+    function convert(type, unit) {
+        if (type === 'bilirubin') {
+            var umol = document.getElementById("umol").value;
+            var mg = document.getElementById("mg").value;
+
+            if (unit === "umol") {
+                if (umol !== "") {
+                    var mgValue = umol / 1.7;
+                    document.getElementById("mg").value = mgValue.toFixed(2);
+                } else {
+                    document.getElementById("mg").value = "";
+                }
+            } else if (unit === "mg") {
+                if (mg !== "") {
+                    var umolValue = mg * 1.7;
+                    document.getElementById("umol").value = umolValue.toFixed(2);
+                } else {
+                    document.getElementById("umol").value = "";
+                }
+            }
+        } else if (type === 'creatinine') {
+            var creat_umol = document.getElementById("creat_umol").value;
+            var creat_mg = document.getElementById("creat_mg").value;
+
+            if (unit === "umol") {
+                if (creat_umol !== "") {
+                    var creat_mgValue = creat_umol / 8.84;
+                    document.getElementById("creat_mg").value = creat_mgValue.toFixed(2);
+                } else {
+                    document.getElementById("creat_mg").value = "";
+                }
+            } else if (unit === "mg") {
+                if (creat_mg !== "") {
+                    var creat_umolValue = creat_mg * 8.84;
+                    document.getElementById("creat_umol").value = creat_umolValue.toFixed(2);
+                } else {
+                    document.getElementById("creat_umol").value = "";
+                }
+            }
+        } else if (type === 'urea') {
+            var urea_mmol = document.getElementById("urea_mmol").value;
+            var urea_g = document.getElementById("urea_g").value;
+
+            if (unit === "mmol") {
+                if (urea_mmol !== "") {
+                    var urea_gValue = urea_mmol * 16.66;
+                    document.getElementById("urea_g").value = urea_gValue.toFixed(2);
+                } else {
+                    document.getElementById("urea_g").value = "";
+                }
+            } else if (unit === "g") {
+                if (urea_g !== "") {
+                    var urea_mmolValue = urea_g / 16.66 ;
+                    document.getElementById("urea_mmol").value = urea_mmolValue.toFixed(2);
+                } else {
+                    document.getElementById("urea_mmol").value = "";
+                }
+            }
+        }
+            else if (type === 'lactate') {
+            var lact_mmol = document.getElementById("lact_mmol").value;
+            var lact_mg = document.getElementById("lact_mg").value;
+
+            if (unit === "mmol") {
+                if (lact_mmol !== "") {
+                    var lact_mgValue = lact_mmol / 0.011; 
+                    document.getElementById("lact_mg").value = lact_mgValue.toFixed(2);
+                } else {
+                    document.getElementById("lact_mg").value = "";
+                }
+            } else if (unit === "mg") {
+                if (lact_mg !== "") {
+                    var lact_mmolValue = lact_mg * 0.011;
+                    document.getElementById("lact_mmol").value = lact_mmolValue.toFixed(2);
+                } else {
+                    document.getElementById("lact_mmol").value = "";
+                }
+            }
+        }
+    }
+    
+</script>
+</body>
+</html>
