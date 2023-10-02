@@ -132,14 +132,14 @@
 
             if (unit === "mmol") {
                 if (urea_mmol !== "") {
-                    var urea_gValue = urea_mmol * 60.055;
+                    var urea_gValue = urea_mmol * 0.060055;
                     document.getElementById("urea_g").value = urea_gValue.toFixed(2);
                 } else {
                     document.getElementById("urea_g").value = "";
                 }
             } else if (unit === "g") {
                 if (urea_g !== "") {
-                    var urea_mmolValue = urea_g / 60.055 ;
+                    var urea_mmolValue = urea_g / 0.060055 ;
                     document.getElementById("urea_mmol").value = urea_mmolValue.toFixed(2);
                 } else {
                     document.getElementById("urea_mmol").value = "";
